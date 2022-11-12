@@ -273,6 +273,8 @@
 		var/armor_stacks = min((get_armor_integrity_percentage() * 0.01) * HUD_ARMOR_STATES_XENO, HUD_ARMOR_STATES_XENO)
 		hud_used.alien_armor_display.icon_state = "armor_[Floor(armor_stacks)]0"
 
+	check_status_effects()
+
 	return TRUE
 
 /*Heal 1/70th of your max health in brute per tick. 1 as a bonus, to help smaller pools.
@@ -286,13 +288,13 @@ Make sure their actual health updates immediately.*/
 /mob/living/carbon/Xenomorph/proc/check_status_effects()
 	var/status_effect_placement = 1
 
-	var/datum/custom_hud/ui_alien_datum
+	var/datum/custom_hud/ui_datum
 
 	var/is_slowed = (slowed || superslowed)
 	if(is_slowed)
 		hud_used.slowed_icon.name = "slowed"
 		hud_used.slowed_icon.icon_state = "status_slow"
-		hud_used.slowed_icon.screen_loc = ui_alien_datum.get_status_loc(status_effect_placement)
+		hud_used.slowed_icon.screen_loc = ui_datum.get_status_loc(status_effect_placement)
 		status_effect_placement++
 	else
 		hud_used.slowed_icon.name = ""

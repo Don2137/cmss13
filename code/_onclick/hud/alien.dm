@@ -21,6 +21,7 @@
 	draw_armor_display(ui_alien_datum)
 	draw_locate_queen(ui_alien_datum)
 	draw_locate_mark(ui_alien_datum)
+	draw_status_effects(ui_alien_datum)
 
 /datum/hud/alien/proc/draw_nightvision(var/datum/custom_hud/alien/ui_alien_datum)
 	var/atom/movable/screen/using = new /atom/movable/screen/xenonightvision()
@@ -56,6 +57,12 @@
 	locate_marker.icon = ui_alien_datum.ui_style_icon
 	locate_marker.screen_loc = ui_alien_datum.ui_mark_locator
 	infodisplay += locate_marker
+
+/datum/hud/alien/proc/draw_status_effects(var/datum/custom_hud/alien/ui_alien_datum)
+	slowed_icon = new /atom/movable/screen()
+	slowed_icon.icon = ui_alien_datum.ui_style_icon
+	slowed_icon.icon_state = "status_0"
+	infodisplay += slowed_icon
 
 /datum/hud/alien/persistent_inventory_update()
 	if(!mymob || !ui_alien_datum)

@@ -162,6 +162,16 @@
 	var/ui_alienarmordisplay 	= "EAST-1:28,5:13"
 	var/ui_mark_locator 		= "EAST-1:28,10:13"
 
+/datum/custom_hud/alien/get_status_loc(var/placement)
+	var/col = (placement-1)
+	var/coord_col = "-0"
+	var/coord_col_offset = "-[24 * col + 2]"
+
+	var/row = round((placement-1)/6)
+	var/coord_row = "[-1 - row]"
+	var/coord_row_offset = -8
+	return "EAST[coord_col]:[coord_col_offset],NORTH[coord_row]:[coord_row_offset]"
+
 /datum/custom_hud/robot
 	ui_style_icon = 'icons/mob/hud/screen1_robot.dmi'
 

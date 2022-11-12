@@ -283,6 +283,21 @@ Xenos don't actually take oxyloss, oh well
 hmmmm, this is probably unnecessary
 Make sure their actual health updates immediately.*/
 
+/mob/living/carbon/Xenomorph/proc/check_status_effects()
+	var/status_effect_placement = 1
+
+	var/datum/custom_hud/ui_alien_datum
+
+	var/is_slowed = (slowed || superslowed)
+	if(is_slowed)
+		hud_used.slowed_icon.name = "slowed"
+		hud_used.slowed_icon.icon_state = "status_slow"
+		hud_used.slowed_icon.screen_loc = ui_alien_datum.get_status_loc(status_effect_placement)
+		status_effect_placement++
+	else
+		hud_used.slowed_icon.name = ""
+		hud_used.slowed_icon.icon_state = "status_0"
+
 /mob/living/carbon/Xenomorph/proc/heal_wounds(m, recov)
 	var/heal_penalty = 0
 	var/list/L = list("healing" = heal_penalty)
